@@ -1,1 +1,1 @@
-This is branch: vertical-tab-\v-in-name
+This is branch: carriage-return-\r-in-name
