@@ -1,1 +1,1 @@
-This is branch: feature/control-chars-
+This is branch: feature/[square-brackets]
