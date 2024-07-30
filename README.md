@@ -1,1 +1,1 @@
-This is branch: feature/mixed-موجه اليمين-إلى-left-text
+This is branch: feature/very-long-branch-name-that-exceeds-the-maximum-length-allowed-by-some-systems-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
