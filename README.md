@@ -1,1 +1,1 @@
-This is branch: /double//slash
+This is branch: ./dot/./in/./path
