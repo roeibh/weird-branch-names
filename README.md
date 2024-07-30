@@ -1,1 +1,1 @@
-This is branch: feature/trailing-slash/
+This is branch: /feature/leading-slash
