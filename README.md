@@ -1,1 +1,1 @@
-This is branch: feature/bell-character-\a-in-name
+This is branch: feature/vertical-tab-\v-in-name
