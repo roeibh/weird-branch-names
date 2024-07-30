@@ -1,1 +1,1 @@
-This is branch: feature//double//slash
+This is branch: feature/./dot/./in/./path
