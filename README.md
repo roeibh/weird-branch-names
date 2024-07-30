@@ -1,1 +1,1 @@
-This is branch: test@example.com
+This is branch: multiple words with spaces
