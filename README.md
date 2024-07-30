@@ -1,1 +1,1 @@
-This is branch: form-feed-\f-in-name
+This is branch: superscript-ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ
