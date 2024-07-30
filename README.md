@@ -1,1 +1,1 @@
-This is branch: [square-brackets]
+This is branch: <angle-brackets>
