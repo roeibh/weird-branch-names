@@ -1,1 +1,1 @@
-This is branch: ../double-dot/../in/../path
+This is branch: русский-и-English-mixed
