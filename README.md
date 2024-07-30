@@ -1,1 +1,1 @@
-This is branch: escape-sequences-\n\t\r\f\v
+This is branch: null-terminator-\0-in-middle
