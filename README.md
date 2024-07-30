@@ -1,1 +1,1 @@
-This is branch: {curly-braces}
+This is branch: [square-brackets]
