@@ -1,1 +1,1 @@
-This is branch: bell-character-\a-in-name
+This is branch: vertical-tab-\v-in-name
