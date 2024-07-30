@@ -1,2 +1,1 @@
-# weird-branch-names
-contains bunch of weird branch names.
+This is branch: test@example.com
