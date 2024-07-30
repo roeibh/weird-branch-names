@@ -1,1 +1,1 @@
-This is branch: trailing-slash/
+This is branch: /leading-slash
