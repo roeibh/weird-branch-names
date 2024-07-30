@@ -1,1 +1,1 @@
-This is branch: percent%sign
+This is branch: hash#tag
