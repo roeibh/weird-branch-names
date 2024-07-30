@@ -1,1 +1,1 @@
-This is branch: urgent_fix!
+This is branch: test@example.com
