@@ -1,1 +1,1 @@
-This is branch: feature/../double-dot/../in/../path
+This is branch: feature/混合中文和English
