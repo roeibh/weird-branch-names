@@ -1,1 +1,1 @@
-This is branch: ampersand&
+This is branch: percent%sign
