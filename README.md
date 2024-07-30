@@ -1,1 +1,1 @@
-This is branch: null-byte--in-name
+This is branch: (parentheses)
