@@ -1,1 +1,1 @@
-This is branch: null-terminator-\0-in-middle
+This is branch: bell-character-\a-in-name
