@@ -1,1 +1,1 @@
-This is branch: feature/[square-brackets]
+This is branch: feature/hash#tag
