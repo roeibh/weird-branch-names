@@ -9,7 +9,6 @@ Welcome to the Weird Branch Names Repository! This repository is dedicated to ho
 ## Features
 - Variety of Names: From the utterly bizarre to the creatively funny.
 - Real-world Scenarios: Test how different tools handle odd branch names.
-- Community Contributions: Submit your own weird branch names and see them featured!
 
 ## Getting Started
 To get started with the weird branch names, clone this repository:
