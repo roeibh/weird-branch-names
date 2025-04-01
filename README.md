@@ -11,7 +11,6 @@ Welcome to the Weird Branch Names Repository! This repository is dedicated to ho
 - Real-world Scenarios: Test how different tools handle odd branch names.
 - Community Contributions: Submit your own weird branch names and see them featured!
 
-
 ## Getting Started
 To get started with the weird branch names, clone this repository:
 
@@ -26,6 +25,12 @@ git branch -a
 ## How to Use
 - Clone the Repository: Get the code on your local machine.
 - Checkout a Weird Branch: Test your Git commands with these names.
+
+## Suggest Your Own Quirky Branches!
+Have an idea for an unusual, bizarre, or technically challenging branch name? We'd love to add it to our collection!
+
+**Simply open a new issue with your suggestion and include your proposed branch name**
+Try to push the boundaries as much as possible!
 
 ## Examples of Weird Branch Names
 - combining-diacritical-marks-a̐̈ë̞̃ı̇́ö̂ű̃
