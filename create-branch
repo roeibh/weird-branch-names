@@ -1,0 +1,171 @@
+#!/bin/bash
+
+# Colors for beautiful output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# Function to print colored log messages
+log_info() {
+    echo -e "${BLUE}ℹ️  INFO:${NC} $1"
+}
+
+log_success() {
+    echo -e "${GREEN}✅ SUCCESS:${NC} $1"
+}
+
+log_warning() {
+    echo -e "${YELLOW}⚠️  WARNING:${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}❌ ERROR:${NC} $1"
+}
+
+log_step() {
+    echo -e "${PURPLE}🔧 STEP:${NC} $1"
+}
+
+log_separator() {
+    echo -e "${CYAN}════════════════════════════════════════════════════════════════${NC}"
+}
+
+# Function to handle errors and exit
+handle_error() {
+    log_error "$1"
+    log_error "Script execution failed. Cleaning up..."
+    
+    # Try to switch back to main if we're on the new branch
+    current_branch=$(git branch --show-current 2>/dev/null)
+    if [[ "$current_branch" == "$branch_name" ]]; then
+        log_info "Switching back to main branch..."
+        git checkout main &>/dev/null
+        log_info "Deleting the failed branch '$branch_name'..."
+        git branch -D "$branch_name" &>/dev/null
+    fi
+    
+    log_separator
+    exit 1
+}
+
+# Main script starts here
+log_separator
+echo -e "${CYAN}🚀 Branch Creation Script${NC}"
+log_separator
+
+# Check if branch name is provided
+if [ $# -eq 0 ]; then
+    log_error "Branch name is required!"
+    echo -e "${YELLOW}Usage: ./create-branch <branch-name>${NC}"
+    exit 1
+fi
+
+branch_name="$1"
+log_info "Starting branch creation process for: ${CYAN}'$branch_name'${NC}"
+
+# Validate branch name (basic validation)
+if [[ "$branch_name" =~ ^[[:space:]]*$ ]]; then
+    handle_error "Branch name cannot be empty or contain only whitespace"
+fi
+
+# Check if we're in a git repository
+log_step "Verifying we're in a Git repository..."
+if ! git rev-parse --git-dir &>/dev/null; then
+    handle_error "Not in a Git repository. Please run this script from within a Git repository."
+fi
+log_success "Git repository detected"
+
+# Check if main branch exists and switch to it
+log_step "Ensuring we're on the main branch..."
+if ! git show-ref --verify --quiet refs/heads/main; then
+    handle_error "Main branch does not exist. Please ensure you have a 'main' branch."
+fi
+
+current_branch=$(git branch --show-current)
+if [[ "$current_branch" != "main" ]]; then
+    log_info "Currently on branch '$current_branch', switching to main..."
+    if ! git checkout main; then
+        handle_error "Failed to switch to main branch. Please ensure your working directory is clean."
+    fi
+fi
+log_success "On main branch"
+
+# Pull latest changes from origin/main
+log_step "Pulling latest changes from origin/main..."
+if git pull origin main; then
+    log_success "Successfully pulled latest changes from origin/main"
+else
+    log_warning "Failed to pull from origin/main. Continuing with local main branch..."
+fi
+
+# Check if branch already exists locally
+log_step "Checking if branch '$branch_name' already exists..."
+if git show-ref --verify --quiet "refs/heads/$branch_name"; then
+    handle_error "Branch '$branch_name' already exists locally. Please choose a different name or delete the existing branch."
+fi
+
+# Check if branch exists on remote
+if git ls-remote --exit-code --heads origin "$branch_name" &>/dev/null; then
+    handle_error "Branch '$branch_name' already exists on remote. Please choose a different name."
+fi
+log_success "Branch name '$branch_name' is available"
+
+# Create and switch to new branch
+log_step "Creating new branch '$branch_name' from main..."
+if ! git checkout -b "$branch_name"; then
+    handle_error "Failed to create branch '$branch_name'. This might be due to an invalid branch name."
+fi
+log_success "Created and switched to branch '$branch_name'"
+
+# Update README.md content
+log_step "Updating README.md content..."
+readme_content="This is branch: $branch_name"
+
+if ! echo "$readme_content" > README.md; then
+    handle_error "Failed to write to README.md. Check file permissions."
+fi
+log_success "README.md updated with new content"
+
+# Show the change
+log_info "README.md now contains:"
+echo -e "${CYAN}$(cat README.md)${NC}"
+
+# Add changes to git
+log_step "Staging changes..."
+if ! git add README.md; then
+    handle_error "Failed to stage README.md changes"
+fi
+log_success "Changes staged successfully"
+
+# Commit changes
+log_step "Committing changes..."
+commit_message="Update README for branch: $branch_name"
+if ! git commit -m "$commit_message"; then
+    handle_error "Failed to commit changes"
+fi
+log_success "Changes committed with message: '$commit_message'"
+
+# Push branch to origin
+log_step "Pushing branch '$branch_name' to origin..."
+if ! git push -u origin "$branch_name"; then
+    handle_error "Failed to push branch to origin. Check your network connection and repository permissions."
+fi
+log_success "Branch '$branch_name' successfully pushed to origin"
+
+# Final success message
+log_separator
+log_success "🎉 Branch creation completed successfully!"
+echo
+log_info "Summary of actions performed:"
+echo -e "  ${GREEN}•${NC} Created branch: ${CYAN}'$branch_name'${NC}"
+echo -e "  ${GREEN}•${NC} Updated README.md content"
+echo -e "  ${GREEN}•${NC} Committed changes"
+echo -e "  ${GREEN}•${NC} Pushed to origin with upstream tracking"
+echo
+log_info "You are now on branch: ${CYAN}'$(git branch --show-current)'${NC}"
+log_info "To switch back to main: ${YELLOW}git checkout main${NC}"
+log_separator
